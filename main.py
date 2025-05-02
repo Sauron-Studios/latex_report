@@ -23,6 +23,8 @@ latexStr += "\\noindent"
 latexStr+=CreateHorizontalTable(tableFormats=tableFormats,tableHeaders=tableHeaders,tableRows=tableRows)
 
 
+latexStr += "\n\\vspace{0.2cm}\n"
+
 latexStr += "\\begin{minipage}[t]{0.48\\textwidth}"
 latexStr+="\\end{minipage}"
 
@@ -33,6 +35,11 @@ latexStr += "\\begin{minipage}[t]{0.48\\textwidth}"
 latexStr+=CreateVerticalTable(tableHeaders=tableHeaders,tableRows=tableRows)
 latexStr+="\\end{minipage}"
 
+latexStr += "\n\\vspace{0.2cm}\n"
+
+latexStr += "\\begin{tcolorbox}[colframe=black, colback=white, boxrule=0.8mm, sharp corners, height=4cm, width=\\textwidth]"
+latexStr += "Content goes here"
+latexStr += "\\end{tcolorbox}"
 
 with open("content.tex", "w", encoding="utf-8") as f:
     f.write(latexStr)

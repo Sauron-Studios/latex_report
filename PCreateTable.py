@@ -26,7 +26,8 @@ def CreateVerticalTable(tableHeaders: List[str], tableRows: List[str]) -> str:
         len(tableRows[0]) if tableRows else 0
     ), "Sizes must match!"
     latexStr = ""
-    latexStr += "\\begin{tabularx}{\\textwidth}{|l|"
+    # latexStr += "\\begin{tabularx}{\\textwidth}{|l|"
+    latexStr += "\\begin{tabularx}{\\linewidth}{|l|"
 
     cols = len(tableRows)
     latexStr += "|".join("X" * cols) + "|}\\hline \n"

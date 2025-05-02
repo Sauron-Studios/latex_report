@@ -2,7 +2,7 @@ import subprocess
 
 from PCreateTable import *
 
-tableFormats=["p{1cm}","X","X","p{1.5cm}","X","p{2cm}","X","X"]
+tableFormats=["p{1cm}","X","X","p{1.4cm}","X","p{2cm}","X","X"]
 tableHeaders = [
     "Sıra No",
     "Stok Kodu",
@@ -22,16 +22,13 @@ latexStr=""
 latexStr += "\\noindent"
 latexStr+=CreateHorizontalTable(tableFormats=tableFormats,tableHeaders=tableHeaders,tableRows=tableRows)
 
-
 latexStr += "\n\\vspace{0.2cm}\n"
 
-latexStr += "\\begin{minipage}[t]{0.48\\textwidth}"
-latexStr+="\\end{minipage}"
-
-latexStr+="\\hfill"
-
 latexStr += "\\noindent"
-latexStr += "\\begin{minipage}[t]{0.48\\textwidth}"
+latexStr += "\\begin{minipage}{0.5\\textwidth}"
+latexStr+="\\end{minipage}"
+latexStr+="\\hfill"
+latexStr += "\\begin{minipage}{0.5\\textwidth}"
 latexStr+=CreateVerticalTable(tableHeaders=tableHeaders,tableRows=tableRows)
 latexStr+="\\end{minipage}"
 

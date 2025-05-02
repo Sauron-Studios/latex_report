@@ -9,6 +9,9 @@ def CreateHorizontalTable(
         len(tableRows[0]) if tableRows else 0
     ), "Sizes must match!"
     latexStr = ""
+
+    latexStr += "\\begin{tcolorbox}[colframe=black, colback=white, boxrule=0.2mm, boxsep=0pt,left=0pt,right=0pt,top=0pt,bottom=0pt,sharp corners]"
+
     latexStr += "\\begin{tabularx}{\\textwidth}{"
     latexStr += "|" + "|".join(tableFormats) + "|}\\hline \n "
     temp = ["\\textbf{" + x + "}" for x in tableHeaders]
@@ -17,6 +20,8 @@ def CreateHorizontalTable(
         latexStr += " & ".join(row) + " \\\\ \hline\n "
     latexStr += "\\end{tabularx}"
 
+    latexStr += "\\end{tcolorbox}"
+    
     latexStr += "\n"
     return latexStr
 
@@ -26,7 +31,9 @@ def CreateVerticalTable(tableHeaders: List[str], tableRows: List[str]) -> str:
         len(tableRows[0]) if tableRows else 0
     ), "Sizes must match!"
     latexStr = ""
-    # latexStr += "\\begin{tabularx}{\\textwidth}{|l|"
+
+    latexStr += "\\begin{tcolorbox}[colframe=black, colback=white, boxrule=0.2mm, boxsep=0pt,left=0pt,right=0pt,top=0pt,bottom=0pt,sharp corners]"
+
     latexStr += "\\begin{tabularx}{\\linewidth}{|l|"
 
     cols = len(tableRows)
@@ -39,6 +46,7 @@ def CreateVerticalTable(tableHeaders: List[str], tableRows: List[str]) -> str:
         latexStr += f"{temp} {temp2} \n"
 
     latexStr += "\\end{tabularx}"
-
+    latexStr += "\\end{tcolorbox}"
+    
     latexStr += "\n"
     return latexStr

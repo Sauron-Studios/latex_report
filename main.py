@@ -1,6 +1,7 @@
 import subprocess
 
 from PCreateTable import *
+from PBox import *
 
 tableFormats=["p{1cm}","X","X","p{1.4cm}","X","p{2cm}","X","X"]
 tableHeaders = [
@@ -18,25 +19,26 @@ tableRows = [
     ["2", "5", "Armut", "2","100 TL","\\%20","20 TL","100 TL"],
 ]
 
+tableHeaders2 = [
+    "Mal Hizmet Toplam Tutarı",
+    "Toplam İskonto",
+    "Hesaplanan KDV(\%20)",
+    "Vergiler Dahil Toplam Tutar",
+    "Ödenecek Tutar",
+]
+tableRows2 = [
+    ["650 TL", "0 TL", "120 TL", "780 TL", "780 TL"],
+]
+
 latexStr=""
 latexStr += "\\noindent"
 latexStr+=CreateHorizontalTable(tableFormats=tableFormats,tableHeaders=tableHeaders,tableRows=tableRows)
-
 latexStr += "\n\\vspace{0.2cm}\n"
-
-latexStr += "\\noindent"
-latexStr += "\\begin{minipage}{0.5\\textwidth}"
-latexStr+="\\end{minipage}"
+latexStr+=EmptyBox("0.6\\textwidth")
 latexStr+="\\hfill"
-latexStr += "\\begin{minipage}{0.5\\textwidth}"
-latexStr+=CreateVerticalTable(tableHeaders=tableHeaders,tableRows=tableRows)
-latexStr+="\\end{minipage}"
-
+latexStr+=WrapperBox(width="0.4\\textwidth",child=CreateVerticalTable(tableHeaders=tableHeaders2,tableRows=tableRows2))
 latexStr += "\n\\vspace{0.2cm}\n"
-
-latexStr += "\\begin{tcolorbox}[colframe=black, colback=white, boxrule=0.8mm, sharp corners, height=4cm, width=\\textwidth]"
-latexStr += "Content goes here"
-latexStr += "\\end{tcolorbox}"
+latexStr+=ColorBox("Yalnız YediYüzSeksenTürkLirası")
 
 with open("content.tex", "w", encoding="utf-8") as f:
     f.write(latexStr)

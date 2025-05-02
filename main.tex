@@ -3,16 +3,23 @@
 \usepackage[utf8]{inputenc}   
 \usepackage[turkish]{babel}  
 
+\usepackage[table]{xcolor} % for row coloring
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{tabularx}
 \usepackage{tikz} 
-\usepackage{tcolorbox}
+\usepackage{tcolorbox} 
+
 
 % \usepackage{showframe}
 
 
 \pagestyle{empty}
+
+\definecolor{lightgray}{gray}{0.9}
+\definecolor{lightergray}{gray}{0.95}
+\rowcolors{2}{lightergray}{lightgray} % odd rows lighter, even rows slightly darker
+
 
 \begin{document}
 \shorthandoff{=}

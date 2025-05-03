@@ -3,7 +3,9 @@ import subprocess
 from PCreateTable import *
 from PBox import *
 
-tableFormats=["p{1cm}","X","X","p{1.4cm}","X","p{2cm}","X","X"]
+WIDTH=148-40
+
+tableFormats = ["p{1cm}", "X", "X", "p{1.4cm}", "X", "p{2cm}", "X", "X"]
 tableHeaders = [
     "Sıra No",
     "Stok Kodu",
@@ -16,7 +18,7 @@ tableHeaders = [
 ]
 tableRows = [
     ["1", "3", "Elma", "3", "350 TL", "\\%20", "70 TL", "350 TL"],
-    ["2", "5", "Armut", "2","100 TL","\\%20","20 TL","100 TL"],
+    ["2", "5", "Armut", "2", "100 TL", "\\%20", "20 TL", "100 TL"],
 ]
 
 tableHeaders2 = [
@@ -30,20 +32,69 @@ tableRows2 = [
     ["650 TL", "0 TL", "120 TL", "780 TL", "780 TL"],
 ]
 
-latexStr=""
+
+sellerDetails = [
+    "VATAN BİLGİSAYAR SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+    "Aşağı Kayabaşı Mahallesi, Atatürk Blv. No:6 D:6 MERKEZ/NİĞDE",
+    "Büyük Mükellefler V.D. 6320023072",
+    "Mersis No: V.D. 0632003607286721",
+    "Ticaret Sicil No:   191942",
+    "Tel: (0388) 212 01 30",
+    "Fax: ",
+]
+
+buyerDetails = [
+    "VATAN BİLGİSAYAR SANAYİ VE TİCARET ANONİM ŞİRKETİ",
+    "Aşağı Kayabaşı Mahallesi, Atatürk Blv. No:6 D:6 MERKEZ/NİĞDE",
+    "Büyük Mükellefler V.D. 6320023072",
+    "Mersis No: V.D. 0632003607286721",
+    "Ticaret Sicil No:   191942",
+    "Tel: (0388) 212 01 30",
+    "Fax: ",
+]
+latexStr = ""
+latexStr = "\\noindent"
+
+latexStr += Row(
+    children=[
+        Column(
+            children=[
+                CustomerBox(details=sellerDetails),
+                CustomerBox(details=sellerDetails),
+            ]
+        ),
+        Column(
+            children=[
+                "\\vspace{1cm}",
+                InvoiceLogoBox(),
+            ]
+        ),
+        Column(
+            children=[
+                LogoBox("cat_logo"),
+                CustomerBox(details=sellerDetails),
+            ]
+        ),
+    ]
+)
+
+latexStr += "\\rowcolors{2}{lightergray}{lightgray}"
 latexStr += "\\noindent"
-latexStr+=CreateHorizontalTable(tableFormats=tableFormats,tableHeaders=tableHeaders,tableRows=tableRows)
+latexStr += CreateHorizontalTable(
+    tableFormats=tableFormats, tableHeaders=tableHeaders, tableRows=tableRows
+)
+latexStr += "\\rowcolors{2}{}{}"
 latexStr += "\n\\vspace{0.2cm}\n"
-latexStr+=EmptyBox("0.6\\textwidth")
-latexStr+="\\hfill"
-latexStr+=WrapperBox(width="0.4\\textwidth",child=CreateVerticalTable(tableHeaders=tableHeaders2,tableRows=tableRows2))
+latexStr += EmptyBox("0.57\\textwidth")
+latexStr += WrapperBox(
+    width="0.4\\textwidth",
+    child=CreateVerticalTable(tableHeaders=tableHeaders2, tableRows=tableRows2),
+)
 latexStr += "\n\\vspace{0.2cm}\n"
-latexStr+=ColorBox("Yalnız YediYüzSeksenTürkLirası")
+latexStr += ColorBox("Yalnız YediYüzSeksenTürkLirası")
 
 with open("content.tex", "w", encoding="utf-8") as f:
     f.write(latexStr)
-
-
 
 
 subprocess.run(["bash", "run.sh"], check=True)

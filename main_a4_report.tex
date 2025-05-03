@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,landscape,margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}   
+\usepackage[turkish]{babel}  
+\usepackage[table]{xcolor} % for row coloring
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tabularx}
+\usepackage{tikz} 
+\usepackage{tcolorbox} 
+\usepackage{pgf-pie}
+\usepackage{pgfplots}
+
+% \usepackage{showframe}
+
+\pagestyle{empty}
+
+\definecolor{lightgray}{gray}{0.9}
+\definecolor{lightergray}{gray}{0.95}
+
+
+\begin{document}
+\shorthandoff{=}
+% \input{content}
+\begin{center}
+	\begin{tikzpicture}
+		\pie[radius=2.5,text=inside,color={red!30,green!50,blue!70}]{30/Cats, 45/Dogs, 25/Owls}
+	\end{tikzpicture}
+\end{center}
+
+\begin{tikzpicture}
+	\begin{axis}[
+			ybar,
+			ylabel={Quantity},
+			symbolic x coords={Cats,Dogs,Owls},
+			xtick=data,
+			nodes near coords,
+			ymin=0,
+			bar width=15pt,
+			enlarge x limits=0.3,
+		]
+		\addplot coordinates {(Cats,30) (Dogs,45) (Owls,25)};
+	\end{axis}
+\end{tikzpicture}
+\end{document}

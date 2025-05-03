@@ -3,7 +3,22 @@ import subprocess
 from PCreateTable import *
 from PBox import *
 
-WIDTH=148-40
+def A4Invoice(latexStr:str):
+    with open("content.tex", "w", encoding="utf-8") as f:
+        f.write(latexStr)
+
+
+    subprocess.run(["pdflatex", "main_a4_invoice"], check=True)
+    subprocess.run(["pdflatex", "main_a4_invoice"], check=True)
+
+def A5Invoice(latexStr:str):
+    with open("content.tex", "w", encoding="utf-8") as f:
+        f.write(latexStr)
+
+
+    subprocess.run(["pdflatex", "main_a5_invoice"], check=True)
+    subprocess.run(["pdflatex", "main_a5_invoice"], check=True)
+
 
 tableFormats = ["p{1cm}", "X", "X", "p{1.4cm}", "X", "p{2cm}", "X", "X"]
 tableHeaders = [
@@ -24,7 +39,7 @@ tableRows = [
 tableHeaders2 = [
     "Mal Hizmet Toplam Tutarı",
     "Toplam İskonto",
-    "Hesaplanan KDV(\%20)",
+    "Hesaplanan KDV(\\%20)",
     "Vergiler Dahil Toplam Tutar",
     "Ödenecek Tutar",
 ]
@@ -93,8 +108,4 @@ latexStr += WrapperBox(
 latexStr += "\n\\vspace{0.2cm}\n"
 latexStr += ColorBox("Yalnız YediYüzSeksenTürkLirası")
 
-with open("content.tex", "w", encoding="utf-8") as f:
-    f.write(latexStr)
-
-
-subprocess.run(["bash", "run.sh"], check=True)
+A4Invoice(latexStr=latexStr)

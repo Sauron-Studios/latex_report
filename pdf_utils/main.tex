@@ -8,10 +8,22 @@
 \usepackage{tabularx}
 \usepackage{tikz} 
 \usepackage{tcolorbox} 
+\usepackage{pgfplots}
+\usepackage{pgf-pie}
+
+\usepackage{fancyhdr}
+\usepackage[useregional]{datetime2} 
+\newcommand{\customtime}{\DTMdisplaydate{%
+  \the\year}{\the\month}{\the\day}{.}~\DTMcurrenttime}
+\renewcommand{\headrulewidth}{0pt} 
+\DTMsetstyle{iso}
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyfoot[R]{\customtime}
 
 % \usepackage{showframe}
 
-\pagestyle{empty}
+% \pagestyle{empty}
 
 \definecolor{lightgray}{gray}{0.9}
 \definecolor{lightergray}{gray}{0.95}

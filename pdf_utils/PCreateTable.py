@@ -1,10 +1,10 @@
 from typing import List
 
-
 def CreateHorizontalTable(
     tableFormats: List[str], tableHeaders: List[str], tableRows: List[str]
 ) -> str:
-    assert len(tableFormats) == len(tableHeaders), "Sizes must match!"
+    if len(tableHeaders)>0:
+        assert len(tableFormats) == len(tableHeaders), "Sizes must match!"
     assert len(tableFormats) == (
         len(tableRows[0]) if tableRows else 0
     ), "Sizes must match!"
@@ -14,8 +14,11 @@ def CreateHorizontalTable(
 
     latexStr += "\\begin{tabularx}{\\textwidth}{"
     latexStr += "|" + "|".join(tableFormats) + "|}\\hline \n "
-    temp = ["\\textbf{" + x + "}" for x in tableHeaders]
-    latexStr += " & ".join(temp) + "\\\\ \hline\n "
+    
+    if len(tableHeaders)>0:
+        temp = ["\\textbf{" + x + "}" for x in tableHeaders]
+        latexStr += " & ".join(temp) + "\\\\ \hline\n "
+    
     for row in tableRows:
         latexStr += " & ".join(row) + " \\\\ \hline\n "
     latexStr += "\\end{tabularx}"
